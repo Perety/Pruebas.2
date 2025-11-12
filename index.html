@@ -45,12 +45,7 @@ h2 { font-size:2rem; font-weight:600; }
 .card:hover { transform: translateY(-5px); }
 
 /* Iconos CSS */
-.icon {
-  width: 60px;
-  height: 60px;
-  display:inline-block;
-  margin-bottom:15px;
-}
+.icon { width: 60px; height: 60px; display:inline-block; margin-bottom:15px; }
 /* Sol */
 .solar-icon { background: radial-gradient(circle at 50% 50%, #ffd93b 0%, #f0a500 80%); border-radius:50%; box-shadow: 0 0 8px #ffd93b; }
 /* Molino de viento */
@@ -136,7 +131,7 @@ h2 { font-size:2rem; font-weight:600; }
   opacity: 0.3;
   display:inline-block;
   margin:0 5px;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
 }
 .diagram.active span {
   opacity:1;
@@ -174,6 +169,10 @@ h2 { font-size:2rem; font-weight:600; }
   transform: translateY(-2px);
 }
 
+/* Hipervínculos dentro de textos */
+a { color:#ffd93b; text-decoration:underline; }
+a:hover { color:#f0a500; }
+
 /* Contenido extendido */
 .detail-section {
   display:none;
@@ -208,7 +207,7 @@ h2 { font-size:2rem; font-weight:600; }
     <div class="card">
       <div class="icon solar-icon"></div>
       <h3>Energía Solar</h3>
-      <p>Convierte la luz solar en electricidad mediante paneles fotovoltaicos.</p>
+      <p>Convierte la luz solar en electricidad mediante <a href="https://www.google.com/search?q=celda+solar+monocristalina" target="_blank">celdas monocristalinas</a>, <a href="https://www.google.com/search?q=celda+solar+policristalina" target="_blank">policristalinas</a> o capa fina.</p>
       <div class="diagram"><span>Sol</span> → <span>Panel</span> → <span>Batería</span> → <span>Hogar</span></div>
       <div class="example"><b>Ejemplo local:</b> Varios colegios usan paneles solares, reduciendo costes y enseñando sostenibilidad.</div>
       <button class="glow-btn" onclick="showDetail('solar')">Más información</button>
@@ -221,7 +220,7 @@ h2 { font-size:2rem; font-weight:600; }
         <div class="blade"></div>
       </div>
       <h3>Energía Eólica</h3>
-      <p>Transforma la fuerza del viento en electricidad mediante aerogeneradores.</p>
+      <p>Transforma la fuerza del viento en electricidad mediante <a href="https://www.google.com/search?q=aerogeneradores" target="_blank">aerogeneradores</a>.</p>
       <div class="diagram"><span>Viento</span> → <span>Molino</span> → <span>Red eléctrica</span> → <span>Ciudad</span></div>
       <div class="example"><b>Ejemplo local:</b> El Parque Eólico de Marjaliza abastece electricidad a miles de hogares.</div>
       <button class="glow-btn" onclick="showDetail('eolica')">Más información</button>
@@ -244,7 +243,7 @@ h2 { font-size:2rem; font-weight:600; }
   <h2>Energía Solar: Detalle Completo</h2>
   <p>La energía solar aprovecha la radiación del sol para generar electricidad limpia y sostenible.</p>
   <ul>
-    <li>Tipos: monocristalinos, policristalinos, capa fina.</li>
+    <li>Tipos: <a href="https://www.google.com/search?q=celda+solar+monocristalina" target="_blank">monocristalinos</a>, <a href="https://www.google.com/search?q=celda+solar+policristalina" target="_blank">policristalinos</a>, capa fina.</li>
     <li>Aplicaciones en colegios, viviendas y empresas.</li>
     <li>Beneficios: ahorro económico y reducción de emisiones.</li>
     <li>Integración con baterías para uso nocturno o días nublados.</li>
@@ -266,10 +265,10 @@ h2 { font-size:2rem; font-weight:600; }
   <h2>Almacenamiento en Baterías: Detalle Completo</h2>
   <p>Las baterías permiten almacenar energía y asegurar suministro durante picos de demanda o apagones.</p>
   <ul>
-    <li>Tipos: litio, plomo-ácido, flujo redox.</li>
+    <li>Tipos: <a href="https://www.google.com/search?q=batería+litio" target="_blank">litio</a>, <a href="https://www.google.com/search?q=batería+plomo-ácido" target="_blank">plomo-ácido</a>, <a href="https://www.google.com/search?q=batería+flujo+redox" target="_blank">flujo redox</a>.</li>
     <li>Aplicaciones: barrios comunitarios y hogares.</li>
     <li>Beneficios: continuidad de suministro y optimización de energía renovable.</li>
-    <li>Futuro: integración con microrredes inteligentes.</li>
+    <li>Futuro: <a href="https://www.google.com/search?q=microrredes+inteligentes" target="_blank">microrredes inteligentes</a>.</li>
   </ul>
 </section>
 
@@ -281,14 +280,15 @@ function showDetail(id){
   detail.style.display='block';
   detail.scrollIntoView({behavior:'smooth'});
 
-  // Animar diagramas
+  // Animar diagramas paso a paso
   const diagrams = document.querySelectorAll('.diagram');
   diagrams.forEach(d => d.classList.remove('active'));
   const cardDiagram = document.querySelector(`#concepts .card button[onclick="showDetail('${id}')"]`).parentNode.querySelector('.diagram');
   if(cardDiagram){
     let steps = cardDiagram.querySelectorAll('span');
     steps.forEach((s,i)=>{
-      setTimeout(()=>{s.style.opacity='1';}, i*400);
+      s.style.opacity='0.3';
+      setTimeout(()=>{s.style.opacity='1';}, i*500);
     });
   }
 }
