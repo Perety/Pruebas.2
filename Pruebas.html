@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reto de Ciencias - Energías Renovables en Cartagena</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1f2330;
+  color: #e0e0eb;
+  scroll-behavior: smooth;
+}
 
+/* Fondos animados */
+.bg, .bg2, .bg3 {
+  position: fixed; top:0; left:-50%; right:-50%; bottom:0; z-index:-1; opacity:0.4;
+}
+.bg { animation: slide 3s ease-in-out infinite alternate; background-image: linear-gradient(-60deg, #5a5f7f 50%, #747aa1 50%); }
+.bg2 { animation-direction: alternate-reverse; animation-duration:4s; background-image: linear-gradient(-60deg, #747aa1 50%, #8b90b2 50%); }
+.bg3 { animation-duration:5s; background-image: linear-gradient(-60deg, #8b90b2 50%, #5a5f7f 50%); }
+@keyframes slide { 0%{transform:translateX(-25%);} 100%{transform:translateX(25%);} }
+
+/* Secciones */
+section { padding: 60px 20px; max-width: 1200px; margin:auto; position: relative; z-index:1; }
+h1, h2 { text-align:center; margin-bottom:30px; color:#d0d3e0; }
+h1 { font-size:3rem; font-weight:700; }
+h2 { font-size:2rem; font-weight:600; }
+
+/* Tarjetas */
+.w3-row-padding { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:25px;
+  flex:1 1 300px;
+  min-width:280px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+
+/* Iconos CSS */
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius:50%;
+  display:inline-block;
+  margin-bottom:15px;
+  position: relative;
+}
+.solar-icon { background: radial-gradient(circle at 50% 50%, #ffd93b 0%, #f0a500 80%); box-shadow: 0 0 8px #ffd93b; }
+
+/* Molino eólico */
+.wind-icon {
+  background: #66b3ff;
+  position: relative;
+}
+.wind-icon::before, .wind-icon::after {
+  content: ''; position: absolute; background: white; border-radius:2px;
+}
+.wind-icon::before {
+  width: 2px; height: 20px; top: 12px; left: 21px; background: #1f2330;
+}
+.wind-icon::after {
+  width: 14px; height: 14px; border: 2px solid #1f2330; border-radius:50%;
+  top: 6px; left: 14px;
+}
+
+/* Batería */
+.battery-icon {
+  background: linear-gradient(180deg, #7fffd4, #00b894);
+  position: relative;
+}
+.battery-icon::before {
+  content:''; position:absolute; top:10px; right:-6px; width:6px; height:15px;
+  background:#00b894; border-radius:2px;
+}
+
+/* Diagramas */
+.diagram {
+  background: rgba(255,255,255,0.1);
+  color:#e0e0eb;
+  padding:12px;
+  border-radius:12px;
+  margin-top:10px;
+  text-align:center;
+  font-family:monospace;
+  font-weight:bold;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Ejemplos */
+.example {
+  background: rgba(255,255,255,0.05);
+  padding:12px;
+  border-radius:12px;
+  margin-top:15px;
+  line-height:1.5;
+  color:#e0e0eb;
+}
+
+/* Botones */
+.glow-btn {
+  background: linear-gradient(145deg, #ffd93b, #f0a500);
+  color:#1f2330;
+  padding:14px 28px;
+  border:none;
+  font-size:1rem;
+  cursor:pointer;
+  border-radius:12px;
+  font-weight:600;
+  margin-top:15px;
+  display:inline-block;
+  text-decoration:none;
+  box-shadow: 0 0 15px rgba(255,217,59,0.5), 0 0 30px rgba(255,217,59,0.2) inset;
+  transition: all 0.3s ease;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 25px rgba(255,217,59,0.8), 0 0 50px rgba(255,217,59,0.4) inset;
+  transform: translateY(-2px);
+}
+
+/* Contenido extendido */
+.detail-section {
+  display:none;
+  padding:60px 25px;
+  background-color: rgba(255,255,255,0.05);
+  border-radius:20px;
+  margin:40px auto;
+  box-shadow:0 15px 50px rgba(0,0,0,0.3);
+}
+.detail-section h2 { font-size:2.5rem; margin-bottom:20px; color:#d0d3e0; }
+.detail-section p, .detail-section ul { font-size:1.1rem; line-height:1.8; color:#e0e0eb; }
+.detail-section li { margin-bottom:10px; }
+
+/* Enlaces Wikipedia */
+a.term {
+  color: #ffd93b;
+  text-decoration: none;
+  border-bottom: 1px dotted #ffd93b;
+}
+a.term:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div><div class="bg2"></div><div class="bg3"></div>
+
+<section id="home">
+  <h1>Reto de Ciencias: Energías Renovables en Cartagena</h1>
+  <p style="text-align:center; max-width:800px; margin:auto; font-size:1.1rem;">
+  Exploramos cómo la energía solar, eólica y el almacenamiento en baterías pueden transformar Cartagena, fomentando sostenibilidad y reduciendo contaminación en un clima mediterráneo húmedo influido por el mar.
+  </p>
+</section>
+
+<section id="concepts">
+  <h2>Conceptos Clave</h2>
+  <div class="w3-row-padding">
+
+    <div class="card">
+      <div class="icon solar-icon"></div>
+      <h3>Energía Solar</h3>
+      <p>Convierte la luz solar en electricidad mediante <a class="term" href="https://es.wikipedia.org/wiki/Panel_solar_fotovoltaico" target="_blank">paneles fotovoltaicos</a>.</p>
+      <div class="diagram">☀️ Sol → Panel → Batería → Hogar</div>
+      <div class="example"><b>Ejemplo local:</b> Varios colegios en Cartagena usan paneles solares, reduciendo costes y enseñando sostenibilidad.</div>
+      <button class="glow-btn" onclick="showDetail('solar')">Más información</button>
+    </div>
+
+    <div class="card">
+      <div class="icon wind-icon"></div>
+      <h3>Energía Eólica</h3>
+      <p>Transforma la fuerza del viento en electricidad mediante <a class="term" href="https://es.wikipedia.org/wiki/Aerogenerador" target="_blank">aerogeneradores</a>.</p>
+      <div class="diagram">🌬️ Viento → Molino → Red eléctrica → Ciudad</div>
+      <div class="example"><b>Ejemplo regional:</b> Los parques eólicos se ubican más hacia el interior de Murcia, donde hay más viento constante.</div>
+      <button class="glow-btn" onclick="showDetail('eolica')">Más información</button>
+    </div>
+
+    <div class="card">
+      <div class="icon battery-icon"></div>
+      <h3>Almacenamiento en Baterías</h3>
+      <p>Permite guardar electricidad generada y usarla cuando se necesite, usando <a class="term" href="https://es.wikipedia.org/wiki/Bater%C3%ADa_recargable" target="_blank">baterías recargables</a>.</p>
+      <div class="diagram">🔋 Panel/Molino → Batería → Casas iluminadas</div>
+      <div class="example"><b>Ejemplo local:</b> Barrios comunitarios usan baterías durante picos o apagones.</div>
+      <button class="glow-btn" onclick="showDetail('baterias')">Más información</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Detalles -->
+<section id="solar" class="detail-section">
+  <h2>Energía Solar: Detalle Completo</h2>
+  <p>La energía solar aprovecha la radiación del sol para generar electricidad limpia y sostenible.</p>
+  <ul>
+    <li>Tipos: <a class="term" href="https://es.wikipedia.org/wiki/Celda_solar_monocristalina" target="_blank">monocristalinos</a>, <a class="term" href="https://es.wikipedia.org/wiki/Celda_solar_policristalina" target="_blank">policristalinos</a>, capa fina.</li>
+    <li>Aplicaciones en colegios, viviendas y empresas.</li>
+    <li>Beneficios: ahorro económico y reducción de emisiones.</li>
+    <li>Integración con <a class="term" href="https://es.wikipedia.org/wiki/Bater%C3%ADa_el%C3%A9ctrica" target="_blank">baterías</a> para uso nocturno o días nublados.</li>
+  </ul>
+</section>
+
+<section id="eolica" class="detail-section">
+  <h2>Energía Eólica: Detalle Completo</h2>
+  <p>Los <a class="term" href="https://es.wikipedia.org/wiki/Aerogenerador" target="_blank">aerogeneradores</a> transforman el viento en electricidad renovable.</p>
+  <ul>
+    <li>Tipos: horizontal y vertical.</li>
+    <li>Ubicación: zonas interiores de Murcia con viento constante.</li>
+    <li>Beneficios: reduce emisiones y genera empleo local.</li>
+    <li>Ejemplo: el Parque Eólico de Marjaliza abastece miles de hogares murcianos.</li>
+  </ul>
+</section>
+
+<section id="baterias" class="detail-section">
+  <h2>Almacenamiento en Baterías: Detalle Completo</h2>
+  <p>Las baterías permiten almacenar energía y asegurar suministro durante picos de demanda o apagones.</p>
+  <ul>
+    <li>Tipos: <a class="term" href="https://es.wikipedia.org/wiki/Bater%C3%ADa_de_ion_litio" target="_blank">litio</a>, <a class="term" href="https://es.wikipedia.org/wiki/Bater%C3%ADa_de_plomo-%C3%A1cido" target="_blank">plomo-ácido</a>, <a class="term" href="https://es.wikipedia.org/wiki/Bater%C3%ADa_de_flujo_redox" target="_blank">flujo redox</a>.</li>
+    <li>Aplicaciones: barrios comunitarios y hogares.</li>
+    <li>Beneficios: continuidad de suministro y optimización de energía renovable.</li>
+    <li>Futuro: integración con <a class="term" href="https://es.wikipedia.org/wiki/Microrred_el%C3%A9ctrica" target="_blank">microrredes inteligentes</a>.</li>
+  </ul>
+</section>
+
+<script>
+function showDetail(id){
+  const sections = document.querySelectorAll('.detail-section');
+  sections.forEach(s => s.style.display='none');
+  document.getElementById(id).style.display='block';
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
